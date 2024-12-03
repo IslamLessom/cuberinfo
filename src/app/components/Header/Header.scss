@@ -1,0 +1,291 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: rgba(15, 5, 20, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+
+    @media (max-width: 768px) {
+        padding: 0 1rem;
+    }
+
+    .logo {
+        &-container {
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 100;
+
+            @media (max-width: 768px) {
+                padding: 0.5rem;
+            }
+        }
+
+        &-icon {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            transform: skew(-10deg);
+            animation: glowEffect 2s infinite ease-in-out;
+
+            @media (max-width: 768px) {
+                width: 32px;
+                height: 32px;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #8a2be2, #4b0082);
+                clip-path: polygon(0 20%, 60% 20%, 100% 50%, 60% 80%, 0 80%);
+                transition: background 0.3s ease;
+            }
+        }
+
+        &-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.5px;
+
+            @media (max-width: 768px) {
+                font-size: 20px;
+            }
+
+            span {
+                background: linear-gradient(to right, #fff, #8a2be2);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                display: inline-block;
+            }
+        }
+    }
+
+    .menu-button {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        z-index: 100;
+        position: relative;
+
+        @media (max-width: 768px) {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin-right: 0.5rem;
+        }
+
+        span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        &.active {
+            span {
+                position: absolute;
+
+                &:nth-child(1) {
+                    transform: translateY(1px) rotate(45deg);
+                }
+                &:nth-child(2) {
+                    opacity: 0;
+                }
+                &:nth-child(3) {
+                    transform: translateY(-1px) rotate(-45deg);
+                }
+            }
+        }
+    }
+
+    .menu {
+        display: flex;
+        gap: 30px;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            a {
+                color: inherit;
+                text-decoration: none;
+                display: block;
+                padding: 0.5rem 0;
+                transition: all 0.3s ease;
+            }
+
+            &:hover {
+                color: white;
+            }
+        }
+
+        @media (max-width: 768px) {
+            display: none;
+
+            &.active {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 100dvh; // Использование динамической высоты вьюпорта
+                background: rgba(15, 5, 20, 0.98);
+                align-items: center;
+                justify-content: flex-start;
+                gap: 2rem;
+                padding-top: 120px; // Увеличенный отступ сверху
+                z-index: 90;
+                overflow-y: auto; // Добавляем прокрутку если нужно
+
+                li {
+                    font-size: 1.5rem;
+                    width: 100%;
+                    text-align: center;
+
+                    a {
+                        padding: 1rem;
+                        display: block;
+
+                        &:hover {
+                            background: rgba(255, 255, 255, 0.05);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .social-buttons {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+
+        @media (max-width: 1024px) {
+            gap: 0.5rem;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            display: none;
+
+            &.active {
+                display: flex;
+                position: fixed;
+                bottom: 2rem;
+                left: 0;
+                right: 0;
+                justify-content: center;
+                gap: 1rem;
+                padding: 1rem;
+                z-index: 91;
+                background: rgba(15, 5, 20, 0.95); // Добавлен фон
+            }
+        }
+    }
+
+    .social-button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+        @media (max-width: 1024px) {
+            width: 36px;
+            height: 36px;
+        }
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+            opacity: 0.9;
+
+            @media (max-width: 1024px) {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        &:hover svg {
+            opacity: 1;
+        }
+    }
+}
+
+@keyframes glowEffect {
+    0%,
+    100% {
+        filter: drop-shadow(0 0 2px rgba(138, 43, 226, 0.4));
+    }
+    50% {
+        filter: drop-shadow(0 0 4px rgba(138, 43, 226, 0.6));
+    }
+}
+
+// Стили для body при открытом меню
+body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    @media (max-width: 768px) {
+        touch-action: none; // Блокируем скролл на мобильных
+    }
+}
+
+// Добавляем стили для активной ссылки
+.menu li a.active {
+    color: white;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #8a2be2, transparent);
+    }
+}
