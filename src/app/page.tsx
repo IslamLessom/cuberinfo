@@ -31,7 +31,6 @@ export default function Home() {
         width="100%"
         height="750px"
         src="https://cybermap.kaspersky.com/en/widget/dynamic/dark"
-        frameborder="0"
       ></iframe>
     </>
   );
