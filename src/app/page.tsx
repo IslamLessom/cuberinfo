@@ -1,7 +1,10 @@
+"use client";
 import { Space_Grotesk } from "next/font/google";
 import "./page.scss";
 import Mission from "./components/Mission/Mission";
 import CommunitySection from "./components/CommunitySection/CommunitySection";
+import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -9,24 +12,32 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export default function Home() {
+  const { t } = useTranslation("common"); // Подключаем переводы из 'common'
+
   return (
     <>
       <section className={`banner ${spaceGrotesk.className}`}>
         <div className="banner-content">
-          <h1 className="title">
-            Дайте толчок своей карьере
-            <br /> в сфере кибербезопасности
-          </h1>
-          <p className="subtitle">
-            Повысьте свой уровень карьеры в сфере кибербезопасности, освоив
-            передовые методы, адаптируясь к меняющимся угрозам и цифровым
-            ландшафтам.
-          </p>
-          <button className="join-button">Войти в сообшество</button>
+          <h1 className="title">{t("careerBoostTitle")}</h1>
+          <p className="subtitle">{t("careerBoostDescription")}</p>
+          <button className="join-button">
+            <Link
+              style={{ color: "white", textDecoration: "none" }}
+              href="https://discord.gg/8bH7xc8t"
+            >
+              {t("enterCommunity")}
+            </Link>
+          </button>
         </div>
       </section>
       <Mission />
       <CommunitySection />
+      <h2
+        style={{ marginBottom: "30px", marginLeft: "10px", fontSize: "35px" }}
+      >
+        Карта происходящих киберпреступлений
+      </h2>
+
       <iframe
         width="100%"
         height="750px"

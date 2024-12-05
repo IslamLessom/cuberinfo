@@ -1,7 +1,10 @@
 import React from "react";
 import "./Footer.scss";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation("common"); // Подключаем переводы из 'common'
+
   return (
     <footer className="footer">
       <div className="footer-content">
@@ -20,7 +23,7 @@ const Footer = () => {
                 <a href="https://discord.gg/8bH7xc8t">Discord</a>
               </li>
               <li>
-                <a href="/news">Blog</a>
+                <a href="/news">{t("blog")}</a>
               </li>
             </ul>
           </div>

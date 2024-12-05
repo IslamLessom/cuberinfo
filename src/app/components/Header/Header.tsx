@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import "./Header.scss";
 import { Space_Grotesk } from "next/font/google";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import i18next from "../../../i18n/i18n";
+import { Switch } from "antd";
+import "./Header.scss";
+import { useTranslation } from "react-i18next";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -14,6 +16,14 @@ const spaceGrotesk = Space_Grotesk({
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [language, setLanguage] = useState("ru"); // Устанавливаем начальный язык
+  const { t } = useTranslation("common"); // Подключаем переводы из 'common'
+
+  const changeLanguage = (checked: boolean) => {
+    const lng = checked ? "en" : "ru";
+    setLanguage(lng);
+    i18next.changeLanguage(lng); // Меняем язык
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -24,6 +34,7 @@ const Header = () => {
     setIsMenuOpen(false);
     document.body.style.overflow = "auto";
   };
+
   return (
     <div className="header">
       <div className="logo-container">
@@ -44,17 +55,22 @@ const Header = () => {
       <ul className={`menu ${isMenuOpen ? "active" : ""}`}>
         <li onClick={closeMenu}>
           <Link href="/" className={pathname === "/" ? "active" : ""}>
-            Главная
+            {t("home")}
           </Link>
         </li>
         <li onClick={closeMenu}>
           <Link href="/news" className={pathname === "/news" ? "active" : ""}>
-            Новости
+            {t("news")}
+          </Link>
+        </li>
+        <li onClick={closeMenu}>
+          <Link href="/news" className={pathname === "/news" ? "active" : ""}>
+            {t("game")}
           </Link>
         </li>
         <li onClick={closeMenu}>
           <Link href="/about" className={pathname === "/about" ? "active" : ""}>
-            О нас
+            {t("aboutUs")}
           </Link>
         </li>
       </ul>
@@ -92,6 +108,13 @@ const Header = () => {
               />
             </svg>
           </a>
+
+          <Switch
+            checkedChildren="RU"
+            unCheckedChildren="EN"
+            defaultChecked={language === "ru"}
+            onChange={changeLanguage}
+          />
         </div>
       </div>
     </div>
