@@ -4,4 +4,5 @@ module.exports = {
     defaultLocale: "en",
     locales: ["en", "ru"], // Укажите поддерживаемые языки
   },
+  target: "experimental-serverless-trace",
 };
