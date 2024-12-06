@@ -60,7 +60,7 @@ export default function CommunitySection() {
     <section className={`${styles.section} ${spaceGrotesk.className}`}>
       <div className={styles.container}>
         <div className={styles.leftContent}>
-          <h2 className={styles.title}>{t}</h2>
+          <h2 className={styles.title}>aaa</h2>
           <p className={styles.subtitle}>{t("subtitle")}</p>
           <button className={styles.button}>
             <Link
