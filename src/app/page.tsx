@@ -35,7 +35,7 @@ export default function Home() {
       <h2
         style={{ marginBottom: "30px", marginLeft: "10px", fontSize: "35px" }}
       >
-        Карта происходящих киберпреступлений
+        {t("kiber")}
       </h2>
 
       <iframe
