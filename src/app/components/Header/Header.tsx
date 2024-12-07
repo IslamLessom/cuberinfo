@@ -64,7 +64,7 @@ const Header = () => {
           </Link>
         </li>
         <li onClick={closeMenu}>
-          <Link href="/news" className={pathname === "/news" ? "active" : ""}>
+          <Link href="/game" className={pathname === "/game" ? "active" : ""}>
             {t("game")}
           </Link>
         </li>
