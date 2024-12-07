@@ -2,6 +2,7 @@
 import { Space_Grotesk } from "next/font/google";
 import styles from "./page.module.scss";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -16,6 +17,7 @@ export default function CyberInfoSection() {
       title: t("dataProtectionTitle"),
       subtitle: t("dataProtectionTipsTitle"),
       description: t("dataProtectionDescription"),
+      href: "https://amdg.kz/blog/10-sovetov-kak-zashitit-svoi-lichnye-dannye-v-internete",
       items: [
         t("reliablePasswordsTitle"),
         t("antivirusProgramsTitle"),
@@ -32,6 +34,7 @@ export default function CyberInfoSection() {
       title: t("cybersecurityCareerTitle"),
       subtitle: t("careerResourcesTitle"),
       description: t("careerOverviewDescription"),
+      href: "https://the-tech.kz/s-chego-nachat-kareru-v-kiberbezopasnosti-professii-vuzy-i-poleznye-resursy/",
       items: [
         t("securityAnalystTitle"),
         t("securityEngineerTitle"),
@@ -48,6 +51,7 @@ export default function CyberInfoSection() {
       title: t("ddosAttacksTitle"),
       subtitle: t("ddosDescription"),
       description: t("ddosExplanation"),
+      href: "https://selectel.ru/blog/ddos-attacks/",
       items: [
         t("massRequestsTitle"),
         t("attackTypesTitle"),
@@ -64,6 +68,7 @@ export default function CyberInfoSection() {
       title: t("preventionDescription"),
       subtitle: t("preventionDescription"),
       description: t("trojanExplanationTitle"),
+      href: "https://www.kaspersky.ru/resource-center/threats/trojans",
       items: [
         t("trojanTypesTitle"),
         t("detectionMethodsTitle"),
@@ -85,19 +90,21 @@ export default function CyberInfoSection() {
 
         <div className={styles.grid}>
           {cyberInfoData.map((card, index) => (
-            <div key={index} className={styles.card}>
-              <div className={styles.cardIcon}>{card.icon}</div>
-              <div className={styles.cardContent}>
-                <h3 className={styles.cardTitle}>{card.title}</h3>
-                <p className={styles.cardSubtitle}>{card.subtitle}</p>
-                <p className={styles.cardDescription}>{card.description}</p>
-                <ul className={styles.cardList}>
-                  {card.items.map((item, idx) => (
-                    <li key={idx}>{item}</li>
-                  ))}
-                </ul>
+            <Link className={styles.links} href={card.href}>
+              <div key={index} className={styles.card}>
+                <div className={styles.cardIcon}>{card.icon}</div>
+                <div className={styles.cardContent}>
+                  <h3 className={styles.cardTitle}>{card.title}</h3>
+                  <p className={styles.cardSubtitle}>{card.subtitle}</p>
+                  <p className={styles.cardDescription}>{card.description}</p>
+                  <ul className={styles.cardList}>
+                    {card.items.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
